@@ -12,17 +12,15 @@ In this quickstart, you learn how to use the Apache Beam SDK for Python to build
    * If it's your first time using **Cloud Shell Editor**, you will be greeted with a welcome page. Go ahead and click **Open Home Workspace** to open your home folder.
    * In the bottom part of the screen, you should see a terminal window which is where we'll be running the commands in this lab.
 
-2. Enable the Dataflow, Compute Engine, Cloud Logging, Cloud Storage, Google Cloud Storage JSON, BigQuery, Cloud Pub/Sub, Cloud Datastore, and Cloud Resource Manager APIs:
+2. Run the following command in the **Cloud Shell Terminal** to enable the Dataflow, Compute Engine, Cloud Logging, Cloud Storage, Google Cloud Storage JSON, BigQuery, and Cloud Resource Manager APIs.
     * It might take about 1-2 minutes to enable all the APIs for the first time
 
     ```sh
     gcloud services enable dataflow compute_component logging storage_component storage_api bigquery cloudresourcemanager.googleapis.com
-
-    gcloud services enable dataflow compute_component logging storage_component storage_api bigquery pubsub datastore.googleapis.com cloudresourcemanager.googleapis.com
     ```
 
-3. Set environment variables that we'll use later on
-   * **NOTE:** If you close the terminal or open another terminal instance, you will need to set the environment variables again. To verify that any of the variables are set, you can `echo` them in the terminal by running `echo $VARIABLE_NAME` (ie `echo $STORAGE_BUCKET`)
+3. Set environment variables that we'll use later on.
+   * **NOTE:** If you close the terminal or open another terminal instance, you will need to set the environment variables again. To verify that any of the variables are set, you can `echo` them in the terminal by running `echo $VARIABLE_NAME` (ie `echo $STORAGE_BUCKET`).
 
     ```sh
     PROJECT_NUMBER=$(gcloud projects describe $GOOGLE_CLOUD_PROJECT --format="value(projectNumber)")
@@ -39,7 +37,7 @@ In this quickstart, you learn how to use the Apache Beam SDK for Python to build
     gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member="user:$USER_EMAIL" --role=roles/iam.serviceAccountUser
     ```
 
-5. Grant the `roles/dataflow.admin`, `roles/dataflow.worker` and `roles/storage.objectAdmin` roles to your Compute Engine default service account. Run the following commands:
+5. Run the following commands to grant the `roles/dataflow.admin`, `roles/dataflow.worker` and `roles/storage.objectAdmin` roles to your Compute Engine default service account.
 
     ```sh
     gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member="serviceAccount:$COMPUTE_SA" --role=roles/dataflow.admin
